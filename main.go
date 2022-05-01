@@ -27,7 +27,7 @@ func main() {
 		log.Fatal("failed to create app  \n", err)
 	}
 
-	// Create endpint
+	// Create endpoint
 	endpoint, err := convoyClient.Endpoints.Create(app.UID, &convoy.CreateEndpointRequest{
 		URL:         someValidWebhookUrl,
 		Secret:      "this is a secret i want",
@@ -38,7 +38,7 @@ func main() {
 		log.Fatal("failed to create app endpoint \n", err)
 	}
 
-	//updateEndpint 🚨 the issue
+	//updateEndpoint 🚨 the issue
 	updatedEndpoint, err := convoyClient.Endpoints.Update(app.UID, endpoint.UID, &convoy.CreateEndpointRequest{
 		URL:         someValidWebhookUrl,
 		Secret:      "i'm a changed secret", // 👀 I've updated my secret here
@@ -57,5 +57,4 @@ func main() {
 	log.Printf("Inital  Secret for endpoint 🪪 (%s) is 🔐(%s) ", endpoint.UID, endpoint.Secret)
 	log.Printf("Updated Secret for endpoint 🪪 (%s) is 🔐(%s) ", updatedEndpoint.UID, updatedEndpoint.Secret)
 	log.Printf("Endpoint from foundEndpoint 🪪 (%s) is 🔐(%s) ", foundEndpoint.UID, foundEndpoint.Secret)
-	//println Secrets
 }
